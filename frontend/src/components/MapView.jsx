@@ -33,7 +33,7 @@ function FlyToBorough({ borough }) {
   return null;
 }
 
-export default function MapView({ theme, selectedBorough, onSelectBorough, timeRange, onSelectCrime }) {
+export default function MapView({ theme, selectedBorough, onSelectBorough, timeRange, selectedOffense, onSelectCrime }) {
   const [boroughShapes, setBoroughShapes] = useState(null);
   const [pins, setPins] = useState([]);
 
@@ -48,10 +48,10 @@ export default function MapView({ theme, selectedBorough, onSelectBorough, timeR
       setPins([]);
       return;
     }
-    getCrimePins(selectedBorough.toUpperCase(), timeRange)
+    getCrimePins(selectedBorough.toUpperCase(), timeRange, selectedOffense)
       .then(setPins)
       .catch(() => setPins([]));
-  }, [selectedBorough, timeRange]);
+  }, [selectedBorough, timeRange, selectedOffense]);
 
   return (
     <MapContainer center={NYC_CENTER} zoom={10} style={{ height: "100%", width: "100%" }}>

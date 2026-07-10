@@ -47,3 +47,8 @@ class BoroughCount(BaseModel):
 class OffenseCount(BaseModel):
     ofns_desc: Optional[str]
     crime_count: int
+
+
+class OffenseType(BaseModel):
+    ofns_desc: str
+    crime_count: int

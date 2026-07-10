@@ -14,10 +14,15 @@ async function request(path) {
   return response.json();
 }
 
-export function getCrimePins(borough, range) {
+export function getCrimePins(borough, range, offense) {
   const params = new URLSearchParams({ range });
   if (borough) params.set("borough", borough);
+  if (offense) params.set("offense", offense);
   return request(`/crimes?${params.toString()}`);
+}
+
+export function getOffenseTypes() {
+  return request("/crimes/offense-types");
 }
 
 export function getCrimeDetail(cmplntNum) {

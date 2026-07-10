@@ -53,7 +53,7 @@ def get_cursor():
 TIME_RANGE_DAYS = {"day": 1, "week": 7, "month": 30}
 
 
-def get_pins(borough=None, time_range="week"):
+def get_pins(borough=None, time_range="week", offense=None):
     """
     Lightweight rows for map pins: just enough to place and label a pin,
     NOT the full case detail (keeps payload small when there are
@@ -72,8 +72,31 @@ def get_pins(borough=None, time_range="week"):
         query += " AND boro_nm = %s"
         params.append(borough.upper())
 
+    if offense:
+        query += " AND ofns_desc = %s"
+        params.append(offense.upper())
+
     with get_cursor() as cur:
         cur.execute(query, params)
+        return cur.fetchall()
+
+
+def get_offense_types():
+    """
+    Distinct offense categories present in the data, most common first.
+    Powers the crime-type filter dropdown on the frontend -- built from
+    real data rather than a hardcoded list, so it never drifts out of
+    sync with what's actually in the database.
+    """
+    query = """
+        SELECT ofns_desc, COUNT(*) as crime_count
+        FROM crimes
+        WHERE ofns_desc IS NOT NULL
+        GROUP BY ofns_desc
+        ORDER BY crime_count DESC
+    """
+    with get_cursor() as cur:
+        cur.execute(query)
         return cur.fetchall()
 
 

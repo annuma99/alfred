@@ -7,7 +7,7 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException, Query
 
 import db
-from models import CrimePin, CrimeDetail
+from models import CrimePin, CrimeDetail, OffenseType
 
 router = APIRouter(prefix="/crimes", tags=["crimes"])
 
@@ -16,9 +16,10 @@ router = APIRouter(prefix="/crimes", tags=["crimes"])
 def list_crimes(
     borough: Optional[str] = Query(None, description="e.g. Brooklyn, Queens"),
     range: str = Query("week", description="day | week | month"),
+    offense: Optional[str] = Query(None, description="e.g. ROBBERY, GRAND LARCENY"),
 ):
     """
-    GET /crimes?borough=Brooklyn&range=week
+    GET /crimes?borough=Brooklyn&range=week&offense=ROBBERY
 
     Returns the pins to plot on the map. Deliberately lightweight --
     just enough fields to place and label a pin. Full details are a
@@ -28,7 +29,20 @@ def list_crimes(
     if range not in db.TIME_RANGE_DAYS:
         raise HTTPException(status_code=400, detail="range must be one of: day, week, month")
 
-    return db.get_pins(borough=borough, time_range=range)
+    return db.get_pins(borough=borough, time_range=range, offense=offense)
+
+
+@router.get("/offense-types", response_model=List[OffenseType])
+def list_offense_types():
+    """
+    GET /crimes/offense-types
+
+    Distinct offense categories present in the data, most common first --
+    powers the crime-type filter dropdown. NOTE: this route must stay
+    declared before GET /crimes/{cmplnt_num} below, or FastAPI will match
+    "offense-types" as a cmplnt_num path param instead of this route.
+    """
+    return db.get_offense_types()
 
 
 @router.get("/{cmplnt_num}", response_model=CrimeDetail)

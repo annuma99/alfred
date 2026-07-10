@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import MapView from "./components/MapView";
 import CasePanel from "./components/CasePanel";
 import TimeRangeFilter from "./components/TimeRangeFilter";
+import OffenseFilter from "./components/OffenseFilter";
 import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   const [theme, setTheme] = useState("light");
   const [selectedBorough, setSelectedBorough] = useState(null);
   const [timeRange, setTimeRange] = useState("week");
+  const [selectedOffense, setSelectedOffense] = useState(null);
   const [selectedCrime, setSelectedCrime] = useState(null);
 
   // Applies the theme to the document root so theme.css's [data-theme]
@@ -58,6 +60,7 @@ export default function App() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <OffenseFilter value={selectedOffense} onChange={setSelectedOffense} />
           <TimeRangeFilter value={timeRange} onChange={setTimeRange} />
           <ThemeToggle theme={theme} onToggle={() => setTheme(theme === "light" ? "dark" : "light")} />
         </div>
@@ -77,6 +80,7 @@ export default function App() {
             selectedBorough={selectedBorough}
             onSelectBorough={setSelectedBorough}
             timeRange={timeRange}
+            selectedOffense={selectedOffense}
             onSelectCrime={setSelectedCrime}
           />
         </div>
