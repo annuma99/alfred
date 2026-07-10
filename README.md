@@ -89,7 +89,7 @@ Open the printed local URL (typically `http://localhost:5173`).
 
 | Variable | Location | Purpose |
 |---|---|---|
-| `SOCRATA_APP_TOKEN` | `ingestion/.env` | Auth for NYC Open Data API, avoids aggressive rate limiting |
+| `SOCRATA_APP_TOKEN` | `ingestion/.env` | Auth for NYC Open Data API |
 | `DATABASE_URL` | `ingestion/.env`, `backend/.env` | Postgres connection string |
 | `ANTHROPIC_API_KEY` | `ingestion/.env` | Generates case summaries via the Claude API |
 | `VITE_API_URL` | `frontend/.env` | Points the frontend at the backend's URL |
