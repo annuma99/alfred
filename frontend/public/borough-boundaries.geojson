@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "boro_name": "Manhattan" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.019, 40.700], [-73.972, 40.708], [-73.933, 40.797], [-73.933, 40.879], [-73.910, 40.879], [-73.933, 40.800], [-73.972, 40.750], [-74.019, 40.700]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "boro_name": "Brooklyn" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.042, 40.573], [-73.866, 40.573], [-73.833, 40.660], [-73.933, 40.700], [-74.019, 40.700], [-74.042, 40.573]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "boro_name": "Queens" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-73.962, 40.660], [-73.700, 40.735], [-73.700, 40.800], [-73.910, 40.879], [-73.933, 40.800], [-73.833, 40.660], [-73.962, 40.660]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "boro_name": "The Bronx" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-73.933, 40.800], [-73.910, 40.879], [-73.850, 40.915], [-73.788, 40.883], [-73.850, 40.800], [-73.933, 40.800]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "boro_name": "Staten Island" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-74.257, 40.477], [-74.052, 40.500], [-74.052, 40.649], [-74.200, 40.649], [-74.257, 40.477]]]
+      }
+    }
+  ]
+}

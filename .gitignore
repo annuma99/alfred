@@ -1,0 +1,29 @@
+# --- Environment / secrets ---
+# Never commit real credentials -- only .env.example files should be tracked
+.env
+*/.env
+**/.env
+
+# --- Python (ingestion/, backend/) ---
+venv/
+*/venv/
+__pycache__/
+*.pyc
+*.pyo
+.Python
+*.egg-info/
+
+# --- Node (frontend/) ---
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# --- OS / editor cruft ---
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# --- Logs ---
+*.log
+npm-debug.log*
